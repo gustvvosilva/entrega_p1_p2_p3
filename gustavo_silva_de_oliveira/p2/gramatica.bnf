@@ -1,0 +1,44 @@
+<programa> ::= <header> <inicio> <bloco> <fim>
+
+<header> ::= "PROGRAMA " "\"" <var> "\"" ":" "\n"
+<inicio> ::= "INICIO" "\n"
+<fim> ::= "FIM"
+
+<bloco> ::= <br> (<statement> "\n" <br>)*
+
+<statement> ::= <atribuicao>
+              | <if>
+              | <while>
+              | <chamada_funcao>
+              | <declaracao_funcao>
+
+<atribuicao> ::= <espacos> <var> <espacos> "=" <espacos> <expressao>
+
+<if> ::= "if" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}" <elseif>* <else>?
+<elseif> ::= <espacos> "else if" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}"
+<else> ::= <espacos> "else" <espacos> "{" <bloco> "}"
+
+<while> ::= "while" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}"
+
+<declaracao_funcao> ::= "funcao" <espacos> <var> <espacos> "(" <params>? ")" <espacos> "{" <bloco> <retorno>? "}"
+<params> ::= <var> ("," <espacos> <var>)*
+
+<chamada_funcao> ::= <var> <espacos> "(" <args>? ")"
+<args> ::= <expressao> ("," <espacos> <expressao>)*
+
+<expressao> ::= <expressao1> (<espacos> <adicao> <espacos> <expressao1>)*
+<expressao1> ::= <expressao2> (<espacos> <mult> <espacos> <expressao2>)*
+<expressao2> ::= <num>
+              | <var>
+              | "(" <espacos> <expressao> <espacos> ")"
+              | <chamada_funcao>
+
+<retorno> ::= "retorno " <expressao> <br>
+<adicao> ::= "+" | "-"
+<mult> ::= "*" | "/"
+<espacos> ::= (" " | "\t")*
+<br> ::= "\n"*
+<var> ::= ([a-z] | [A-Z])+
+<num> ::= <positivo> | <negativo>
+<positivo> ::= ("0" | [1-9] [0-9]*) ("," [0-9]+)?
+<negativo> ::= "-" <positivo>

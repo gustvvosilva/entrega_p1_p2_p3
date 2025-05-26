@@ -1,0 +1,17 @@
+PROGRAMA "teste":
+INICIO
+funcao calculo(a, b) {
+resultado = a * b
+retorno resultado
+}
+
+funcao main() {
+a = 5
+b = 7
+
+multiplicacao = calculo(a, b)
+print(multiplicacao)
+
+retorno 0
+}
+FIM
